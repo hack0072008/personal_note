@@ -1,0 +1,16 @@
+EC2：你的云服务商的VM
+ECS：你的云服务商的docker容器，或者自己构建
+RDS：MySQL/Postgres
+DynamoDB：riak
+ElastiCache：memcached/redis
+S3：我觉得你还是可以用S3作为备份方案的，国内也有不错的某某云存储
+SQS：RabbitMQ，Kafka
+Route53：DNSPod（好吧我相信大部分人用这个，所以不算广告了）
+IAM/VPC/SG：不要含糊，如果云提供商没有，考虑在适当的时候构建你自己的
+CloudWatch：Riemann或者其他
+CloudSearch：ElasticSearch
+CodeDeploy，ElasticBeanstalk，OpsWorks，以及cloud formation：ansible /puppet / chef等
+SNS：pusher
+SES：sendgrid/mailgun，或者国内类似的邮件服务商
+ElasticMapreduce：hadoop
+Machinelearning：PredictionIO（这货是个开源软件，我以后专门辟文介绍）
