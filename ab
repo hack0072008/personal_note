@@ -1,0 +1,17 @@
+Apache安装包中自带的压力测试工具 Apache Benchmark(简称ab) 简单易用，这里就采用 ab作为压力测试工具了。
+1.独立安装
+
+ab运行需要依赖apr-util包，安装命令为： 
+1 yum install apr-util
+安装依赖 yum-utils中的yumdownload 工具
+如果没有找到 yumdownload 命令可以
+1 yum install yum-utils
+安装完成后执行以下指令
+1 cd /opt
+2 mkdir abtmp
+3 cd abtmp
+4 yum install yum-utils.noarch
+5 yumdownloader httpd-tools*
+6 rpm2cpio httpd-*.rpm | cpio -idmv
+解开后就能得到独立的 ab可执行文件了。
+操作完成后 将会产生一个 usr 目录 ab文件就在这个usr 目录中
