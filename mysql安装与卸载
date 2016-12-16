@@ -1,0 +1,34 @@
+卸载：
+1、yum remove mysql mysql-server mysql-libs compat-mysql51
+2、rm -rf /var/lib/mysql
+3、rm /etc/my.cnf
+
+
+rpm -qa|grep mysql
+yum remove mysql-server
+ls -ltr /etc/my.cnf
+ls -ltr /usr/lib/mysql
+ls -ltr /usr/share/mysql
+rm -rf /usr/share/mysql
+ls -ltr /var/lib/mysql
+rm -rf /var/lib/mysql
+rpm -qa|grep mysql
+yum remove mysql-community-client mysql-connector-python mysql-community-libs mysql-community-common mysql-community-release
+
+
+[root@localhost local]# whereis mysql 或者 find / -name mysql
+mysql: /usr/lib/mysql /usr/share/mysql
+清空相关mysql的所有目录以及文件
+rm -rf /usr/lib/mysql
+rm -rf /usr/share/mysql
+rm -rf /usr/my.cnf
+
+
+安装：
+rpm -ivh mysql-community-release-el7-5.noarch.rpm
+ls -ltr /etc/yum.repos.d/mysql*
+yum install mysql-server
+service mysqld restart
+
+
+完
