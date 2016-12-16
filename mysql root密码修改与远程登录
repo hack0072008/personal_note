@@ -1,0 +1,17 @@
+使用sql语句：update user set password=‘root' where user='root'; 修改mysql数据库下的user表，导致修改完成后mysql数据库消失，而且修改后的密码也无效，最后在网上找到结果，是不能直接修改密码，是要用password()函数修改的，如果出现这种情况的话，可以用下面的办法解决：
+
+
+修改MySQL数据库目录配置文件：my.cnf（或my.ini） 
+[mysqld]下添加
+skip-grant-tables
+重启mysql服务，然后用mysql 登录
+进入后，可以看到，mysql数据库已呈现，然后修改密码：
+select host,user,password from user;                            //看看现在有没有，update user set host = '%' where user = 'root';   增加root远程登录
+update user set password=password('root') where user='root';
+select host,user,password from user;
+flush privileges;
+退出mysql，修改配置文件my.cnf 把刚才的skip-grant-tables注释掉
+重启mysql服务，然后就可以用用户名，密码登录。
+
+
+完
