@@ -1,8 +1,10 @@
-# Celery
+# Celery 踩坑笔记
 
 ## install
     pip install celery
     pip install django-celery
+    pip install redis
+    
 ## monitor
     pip install flower
 
@@ -40,7 +42,7 @@
 
     --autoscale
     Enable autoscaling by providing max_concurrency, min_concurrency. Example:
-    --autoscale=10,3
+        --autoscale=10,3
 
     --prefetch-multiplier
     Set custom prefetch multiplier value for this worker instance.
@@ -48,6 +50,7 @@
 ## 启动
     python manage.py celery worker -f /var/log/celery_work_others.log --autoscale=4,2 -l INFO -n worker_others -Q default,consul_queue,package_queue,pre_process_queue,deregister_queue,register_queue
     celery flower --broker=redis://:redis_password@127.0.0.1:6379/1 --address=0.0.0.0 --port=5555 --basic_auth=username:password
+
 ## 清除celery队列待执行任务
     celery purge -Q queuename    #清除指定队列任务
     celery purge                 #清除所有任务
@@ -61,7 +64,7 @@
     https://www.v2ex.com/t/343440
     http://docs.celeryproject.org/en/master/userguide/optimizing.html#optimizing-prefetch-limit
 
-## 代码结构
+## 代码结构(django apps name:platform3)
     .
     ├── manage.py
     ├── platform3
@@ -152,23 +155,14 @@
     tail -f /var/log/celery_work_others.log
 
 
+## note
+    一，已执行的任务，可以清除 RESULT_BACKEND 中对应的库的所有数据达到目的
+    二，Django==1.9 && celery==3.1.7 下,CELERY_ROUTES不生效；.delay()也无法正常添加任务。必须在apply_async时手动指定queue参数
+    三，celery==3.2 以后版本无法以root用户启动，必须其他用户
+
+                         
+## 其他
+    待续。。。
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+ 
