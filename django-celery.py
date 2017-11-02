@@ -160,9 +160,6 @@
 ## 杂记
     一，已执行的任务，可以清除 RESULT_BACKEND 中对应的库的所有数据达到目的
     二，Django==1.9 && celery==3.1.7 下, CELERY_ROUTES不生效；.delay()也无法正常添加任务。必须在apply_async时手动指定queue参数
-        ----备注：
-            原因是安装完各个包之后没同步django数据库导致，执行：python manage.py migrate，即可解决，不用再apply_async直接可以delay()执行
-             ----新问题：CELERY_ROUTE有部分不生效，待查
     三，celery==3.2 以后版本无法以root用户启动，必须为其他用户
 
                          
