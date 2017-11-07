@@ -136,6 +136,9 @@
 
     @task()
     def consul_add_group(*args, **kwargs):
+      a = args[0]
+      b = args[1]
+      c = args[2]
       time.sleep(30)
       logger.info('consul_add_group...')
       return True
@@ -161,8 +164,15 @@
     一，已执行的任务，可以清除 RESULT_BACKEND 中对应的库的所有数据达到目的
     二，Django==1.9 && celery==3.1.7 下, CELERY_ROUTES不生效；.delay()也无法正常添加任务。必须在apply_async时手动指定queue参数
     三，celery==3.2 以后版本无法以root用户启动，必须为其他用户
+    四，django 与 celery结合使用时需要注意一下两点：
+    A>安装完django-celery后，需要同步数据库（python manage.py migrate），否则celery不正常，现象是异步调用成功，队列中无法看见任务
+    B>启动顺序必须依次是：django项目 --> celery worker --> celery flower，否则现象是django项目中引用tasks.py后在调用任务时无法识别任务
+        
+## 常用api
+    一，task = consul_add_group.apply_async(['AA', 'BB', 'CC'], queue = 'consul_queue')
+        print 'task_id:%s task_status:%s' task.id,task.status
+        #注意传递形式  和 任务ID、任务状态获取
 
-                         
 ## 其他
     待续。。。
 
