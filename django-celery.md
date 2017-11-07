@@ -49,8 +49,11 @@
     Set custom prefetch multiplier value for this worker instance.
     
 ## 启动
-    python manage.py celery worker -f /var/log/celery_work_others.log --autoscale=4,2 -l INFO -n worker_others -Q default,consul_queue,package_queue,pre_process_queue,deregister_queue,register_queue
-    celery flower --broker=redis://:redis_password@127.0.0.1:6379/1 --address=0.0.0.0 --port=5555 --basic_auth=username:password
+    nohup python manage.py runserver 0.0.0.0:8000 > /var/log/sengladmin/django.log &
+    nohup python manage.py celery worker -f /var/log/sengladmin/celery_work_others.log --autoscale=4,2 -l INFO -n worker_others -Q default,consul_queue,package_queue,pre_process_queue,deregister_queue,register_queue > /dev/null &
+    nohup python manage.py celery worker -f /var/log/sengladmin/celery_work_deploy.log --autoscale=4,2 -l INFO -n worker_deploy -Q deploy_queue > /dev/null &
+    nohup celery flower --broker=redis://:seng1admin@127.0.0.1:6379/1 --address=0.0.0.0 --port=5555 --basic_auth=admin:000000 > /var/log/sengladmin/flower.log &
+
 
 ## 清除celery队列中待执行任务
     celery purge -Q queuename    #清除指定队列任务
