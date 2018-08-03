@@ -87,6 +87,7 @@
    face_recognition --tolerance 0.4 --show-distance True C:\Pictures\know_images_dir C:\images\unknow_photos.jpg
 
 
+pip list:
 Package                 Version
 ----------------------- -------
 click                   6.7
