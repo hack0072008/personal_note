@@ -1,0 +1,93 @@
+
+
+
+
+背景：
+    在研究python27下的 face_recognition进行人脸识别、人脸验真时遇到 依赖库 dlib 安装失败，于是必须研究win x64 Python27的dlib的编译安装，发现还是挺费事的，于是就有了这篇文章。
+    pip install face_recognition报错
+    
+
+环境：
+    win7, x64, python2.7, virtualenv
+    
+    
+过程：
+    总体思路：
+        创建个目录
+        pip install virtualenv
+        pip install face_recognition 出错,然后：
+            先cmake,再vs2015，再boost，最后再dlib
+        （注意dlib对于boost版本有要求，而boost对于vs版本又有要求）
+    总体参考：
+        https://blog.csdn.net/qq_35044509/article/details/78882316
+
+一 camke：
+   A，下载：
+       https://cmake.org/files/v3.11/cmake-3.11.4-win64-x64.msi(也可以是zip包，但是需要自己解压缩到指定目录即可)
+   B，安装配置：
+       找到msi安装目录或者自己解压缩的目录；
+       将cmake的bin文件夹添加在系统环境和用户环境路径中(PATH)
+       
+       
+二 vs2015(Microsoft Visual Studio 2015):
+   A，下载：
+       自行百度（社区版本即可，免费）
+   B，安装：
+       典型配置，然后：编程语言->选择c++，一路下一步即可(比较大，注意磁盘空间)
+   C，配置：
+      安装完，cmd中执行 cl 命令，测试一下，看能否找到命令，否则需要检查环境变量(VSXXCOMNTOOLS)，参考：
+          https://blog.csdn.net/sinat_29288207/article/details/56014812?locationNum=2&fps=1
+          
+三 boost(boost_1_53_0.zip):
+   A，下载：
+       https://www.boost.org/users/history/
+   B，安装：
+      创建目录，解压zip包
+   C，编译：
+      cmd;
+      cd boost_1_53_0;
+      bootstrap.bat(执行完，看下bootstrap.log中是否有报错，如果找不到cl命令则vs安装配置有问题，则需要解决；没有报错则应该出现bjam.exe、b2.exe等)
+      bjam --with-python
+      b2 install
+      b2 -a address-model=64 toolset=msvc runtime-link=static
+   D，配置：
+      BOOST_LIBRARYDIR C:\boost_1_53_0\stage\lib
+      BOOST_ROOT C:\boost_1_53_0
+      配置系统或用户环境变量
+      
+四 dlib(dlib-19.15): 
+   A，下载：
+       https://github.com/davisking/dlib/tree/v19.15
+       指定tag，下载zip包
+   B，安装：
+       创建目录，解压zip包
+   C，编译：
+       cmd
+       激活 virtualenv(否则后面编译dlib库直接到系统的python2.7/lib/site-packages下):
+           cd venv\Scripts
+           activate
+       cd dlib-19.15
+       python setup.py install
+       
+       编译后，自动把结果：dlib-19.15.0-py2.7-win-amd64.egg 放到python/lib/site-packages下；
+       同时在dist目录下生成dlib-19.15.0-py2.7-win-amd64.egg文件（此文件针对python下import无效）
+
+五 总测试：
+   方式一：
+   cmd
+   激活 virtualenv
+   pip install face_recognition
+   python
+   import face_recognition
+   face_recognition_models\__init__.py:7: UserWarning: Module dlib was already imported from C:\face\venv\lib\site-packages\dlib-19.15.0-py2.7-win-amd64.egg\dlib.pyd,, but c:\face\dlib-19.15 is being added to sys.path
+   （此告警可忽略，不影响实际使用）
+   
+   方式二：
+   cmd
+   face_recognition --tolerance 0.4 --show-distance True C:\Pictures\know_images_dir C:\images\unknow_photos.jpg
+
+
+
+--完--
+
+
