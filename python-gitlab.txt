@@ -1,0 +1,16 @@
+
+pip install python-gitlab
+
+src:
+https://github.com/python-gitlab/python-gitlab
+
+doc:
+https://python-gitlab.readthedocs.io/en/stable/
+https://docs.gitlab.com/ce/api/projects.html
+
+参考：
+https://blog.csdn.net/xie_0723/article/details/75215869
+
+
+
+
