@@ -7,7 +7,7 @@
 # 修改：vim /etc/bashrc
     HISTFILESIZE=2000
     HISTSIZE=2000
-    HISTTIMEFORMAT="%Y%m%d-%H:%M:%S "  或者HISTTIMEFORMAT="%Y%m%d %T "
+    HISTTIMEFORMAT="%Y%m%d-%H:%M:%S "
     export HISTTIMEFORMAT
 
 # 生效：
