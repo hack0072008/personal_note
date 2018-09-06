@@ -2,7 +2,7 @@
 
 # 前提：
     rpm -q bash
-    bash-3.0以上版本有效
+    (bash-3.0以上版本有效)
 
 # 修改：vim /etc/bashrc
     HISTFILESIZE=2000
