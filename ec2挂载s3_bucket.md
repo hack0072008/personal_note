@@ -30,7 +30,9 @@
     /dev/mapper/VG--SD-LV--SD  1.1T   66G  985G   7% /data
     tmpfs                      707M     0  707M   0% /run/user/1002
     s3fs                       256T     0  256T   0% /data_s3/packages
-
+# 取消挂载
+    umount /data_s3/packages
+    
 # 参考：
     https://github.com/s3fs-fuse/s3fs-fuse/wiki/FAQ#q-https-connecting-failed-if-bucket-name-includes-dot-    //官方FAQ
     https://aws.amazon.com/cn/blogs/china/s3fs-amazon-ec2-linux/
