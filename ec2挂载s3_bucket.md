@@ -36,6 +36,7 @@
 # 参考：
     https://github.com/s3fs-fuse/s3fs-fuse/wiki/FAQ#q-https-connecting-failed-if-bucket-name-includes-dot-    //官方FAQ
     https://aws.amazon.com/cn/blogs/china/s3fs-amazon-ec2-linux/
+    https://mp.weixin.qq.com/s/F2YMedm8q2M40MPzwSa9YQ
 
 
 ~ the end ~
