@@ -9,7 +9,7 @@
 
 
 ### 新增详细步骤：
-    add disk
+    add disk(100G)
     fdisk /dev/xvdg      //lvm:t,L,8e
     partprobe
     pvcreate /dev/xvdg1
