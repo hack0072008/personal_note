@@ -6,7 +6,7 @@
 
 # 0.IAM key,id
     echo ACCESS_KEY_ID:SECRET_ACCESS_KEY > ~/.passwd-s3fs
-    chmod 600 /etc/passwd-s3fs
+    chmod 600 ~/.passwd-s3fs
 
 # 1./etc/fstab 自动挂载
     /etc/fstab:
