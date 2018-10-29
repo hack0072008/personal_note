@@ -15,8 +15,11 @@
         s3fs#devops.zhangyh-test /data_s3/packages/ fuse _netdev,allow_other,use_path_request_style,url=http://url.to.s3/,endpoint=cn-north-1 0 0
 
 # 2.手动挂载
-    s3fs -o allow_other devops.zhangyh-test /data_s3/packages/ -o passwd_file=~/.passwd-s3fs -o url=http://s3.cn-north-1.amazonaws.com.cn -o endpoint=cn-north-1                                  //直接挂载,日志在/var/log/messages
-    s3fs -o allow_other devops.zhangyh-test /data_s3/packages/ -o passwd_file=~/.passwd-s3fs -o url=http://s3.cn-north-1.amazonaws.com.cn -o endpoint=cn-north-1 -o dbglevel=info -f -o curldbg   //带debug日志输出
+    cn:
+    s3fs -o allow_other devops.zhangyh-test /data_s3/packages/ -o passwd_file=~/.passwd-s3fs -o url=http://s3.<region-name>.amazonaws.com.cn -o endpoint=<region-name>                                 //直接挂载,日志在/var/log/messages
+    s3fs -o allow_other devops.zhangyh-test /data_s3/packages/ -o passwd_file=~/.passwd-s3fs -o url=http://s3.<region-name>.amazonaws.com.cn -o endpoint=<region-name> -o dbglevel=info -f -o curldbg   //带debug日志输出
+    us:
+    ......
 
 # 3.查看
     df -h
