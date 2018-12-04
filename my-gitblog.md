@@ -7,6 +7,7 @@
             https://github.com/jockchou/gitblog/releases
     
 #### 软件安装
+    apt-get install apache2
     apt-get install php
     Failed to start The Apache HTTP Server.(与nginx默认端口80冲突，后续修改)
     
