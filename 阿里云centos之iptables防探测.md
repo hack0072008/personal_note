@@ -10,7 +10,7 @@
      yum install iptables-services
 
 #### 配置iptables:
-     vim /etc/sysconfig/iptables
+     vim /etc/sysconfig/iptables:
      # sample configuration for iptables service
      # you can edit this manually or use system-config-firewall
      # please do not ask us to add additional ports/services to this default configuration
@@ -37,7 +37,8 @@
      systemctl enable iptables.service
 
 #### 禁用selinux：
-     vim /etc/selinux/config
+     vim /etc/selinux/config:
      SELINUX=disabled
+     
      #立刻生效配置
      setenforce 0
